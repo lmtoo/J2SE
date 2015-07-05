@@ -8,6 +8,7 @@ import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.junit.Test;
 
 /**
  * 
@@ -19,12 +20,14 @@ import org.dom4j.io.SAXReader;
  * @version V1.0
  */
 public class Dom4jXpathDemo {
-    @SuppressWarnings("unchecked")
-    public void parserXml(String fileName){
+    
+    @Test
+    public void parserXml(){
         SAXReader reader = new SAXReader();
         try {
             /*Document receiveDoc = DocumentHelper.parseText(result);*/
-            Document document = reader.read(new File(fileName));
+            String path = getClass().getClassLoader().getResource("user.xml").getPath();
+            Document document = reader.read(new File(path));
             /*System.out.println("name:"+document.selectSingleNode("/user/Account/name").getText());*/
             List<Element> list = document.selectNodes("/user/Account");
             for(Element el:list){
@@ -39,9 +42,5 @@ public class Dom4jXpathDemo {
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-    }
-    public static void main(String[] args) {
-        Dom4jXpathDemo demo = new Dom4jXpathDemo();
-        demo.parserXml("src/main/resources/user.xml");
     }
 }

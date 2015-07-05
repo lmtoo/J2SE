@@ -1,61 +1,14 @@
 package com.somnus.designPatterns.prototype;
 
-import java.util.Date;
-
-/**
- * 深克隆
- * @author Somnus
- */
 public class Client2 {
-	public static void main(String[] args) throws CloneNotSupportedException {
-		Date date = new Date(1428588884432L);
-		Sheep2 sheep = new Sheep2("Dolly",date);
-		Sheep2 sheep2 = (Sheep2) sheep.clone();
-		
-		System.out.println(sheep);
-		System.out.println(sheep.getName());
-		System.out.println(sheep.getBirthday());
-		
-		date.setTime(1420588854432L);
-		
-		System.out.println(sheep2);
-		System.out.println(sheep2.getName());
-		System.out.println(sheep2.getBirthday());
-	}
-}
-class Sheep2 implements Cloneable{
-	private String name;
-	private Date birthday;
-	
-	public Sheep2(String name, Date birthday) {
-		this.name =  name;
-		this.birthday = birthday;
-	}
-
-	@Override
-	protected Object clone() throws CloneNotSupportedException{
-		Object obj = super.clone();
-		
-		//添加如下代码实现深复制
-		Sheep2 s = (Sheep2) obj;
-		s.birthday = (Date) this.birthday.clone();
-		return obj;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Date getBirthday() {
-		return birthday;
-	}
-
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
-	}
-	
+    public static void main(String[] args) {
+        WeeklyLog2 log_previous = new WeeklyLog2(); //创建原型对象
+        Attachment2  attachment = new Attachment2(); //创建附件对象
+        log_previous.setAttachment(attachment);  //将附件添加到周报中
+        WeeklyLog2 log_new  = log_previous.clone(); //调用克隆方法创建克隆对象
+        //比较周报
+        System.out.println("周报是否相同？ " + (log_previous ==  log_new));
+        //比较附件
+        System.out.println("附件是否相同？ " +  (log_previous.getAttachment() == log_new.getAttachment()));
+    }
 }

@@ -1,78 +1,132 @@
 package com.somnus.designPatterns.composite;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public interface AbstractFile {
-	void killVirus();
+/**
+ * 
+ * @Title: AbstractFile.java 
+ * @Package com.somnus.designPatterns.composite 
+ * @Description: TODO
+ * @author Somnus
+ * @date 2015年6月25日 上午11:18:52 
+ * @version V1.0
+ */
+//抽象文件类：抽象构件
+public abstract class AbstractFile {
+    public abstract void add(AbstractFile file);  
+    public abstract void remove(AbstractFile file);  
+    public abstract AbstractFile getChild(int i);  
+    public abstract void killVirus(); 
 }
-class ImageFile implements AbstractFile{
-	private String name;
-	
-	public ImageFile(String name) {
-		super();
-		this.name = name;
-	}
+//图像文件类：叶子构件  
+class ImageFile extends AbstractFile {  
+  private String name;  
+    
+  public ImageFile(String name) {  
+      this.name = name;  
+  }  
+    
+  public void add(AbstractFile file) {  
+     System.out.println("对不起，不支持该方法！");  
+  }  
+    
+  public void remove(AbstractFile file) {  
+      System.out.println("对不起，不支持该方法！");  
+  }  
+    
+  public AbstractFile getChild(int i) {  
+      System.out.println("对不起，不支持该方法！");  
+      return null;  
+  }  
+    
+  public void killVirus() {  
+      //模拟杀毒  
+      System.out.println("----对图像文件'" + name + "'进行杀毒");  
+  }  
+}  
 
-	@Override
-	public void killVirus() {
-		System.out.println("图像文件"+name+"进行查杀");
-	}
-}
-class TextFile implements AbstractFile{
-	private String name;
-	
-	public TextFile(String name) {
-		super();
-		this.name = name;
-	}
+//文本文件类：叶子构件  
+class TextFile extends AbstractFile {  
+  private String name;  
+    
+  public TextFile(String name) {  
+      this.name = name;  
+  }  
+    
+  public void add(AbstractFile file) {  
+     System.out.println("对不起，不支持该方法！");  
+  }  
+    
+  public void remove(AbstractFile file) {  
+      System.out.println("对不起，不支持该方法！");  
+  }  
+    
+  public AbstractFile getChild(int i) {  
+      System.out.println("对不起，不支持该方法！");  
+      return null;  
+  }  
+    
+  public void killVirus() {  
+      //模拟杀毒  
+      System.out.println("----对文本文件'" + name + "'进行杀毒");  
+  }  
+}  
 
-	@Override
-	public void killVirus() {
-		System.out.println("文本文件"+name+"进行查杀");
-	}
-}
-class VideoFile implements AbstractFile{
-	private String name;
-	
-	public VideoFile(String name) {
-		super();
-		this.name = name;
-	}
+//视频文件类：叶子构件  
+class VideoFile extends AbstractFile {  
+  private String name;  
+    
+  public VideoFile(String name) {  
+      this.name = name;  
+  }  
+    
+  public void add(AbstractFile file) {  
+     System.out.println("对不起，不支持该方法！");  
+  }  
+    
+  public void remove(AbstractFile file) {  
+      System.out.println("对不起，不支持该方法！");  
+  }  
+    
+  public AbstractFile getChild(int i) {  
+      System.out.println("对不起，不支持该方法！");  
+      return null;  
+  }  
+    
+  public void killVirus() {  
+      //模拟杀毒  
+      System.out.println("----对视频文件'" + name + "'进行杀毒");  
+  }  
+}  
 
-	@Override
-	public void killVirus() {
-		System.out.println("视频文件"+name+"进行查杀");
-	}
-}
-class Folder implements AbstractFile{
-	private String name;
-	
-	private List<AbstractFile> list = new ArrayList<AbstractFile>();
-	
-	public Folder(String name) {
-		super();
-		this.name = name;
-	}
-	
-	public void add(AbstractFile file){
-		list.add(file);
-	}
-	
-	public void remove(AbstractFile file){
-		list.remove(file);
-	}
-	
-	public AbstractFile getChildr(int index){
-		return list.get(index);
-	}
-
-	@Override
-	public void killVirus() {
-		System.out.println("文件夹"+name+"进行查杀");
-		
-		for(AbstractFile file:list){
-			file.killVirus();
-		}
-	}
-}
+//文件夹类：容器构件  
+class Folder extends AbstractFile {  
+  //定义集合fileList，用于存储AbstractFile类型的成员  
+  private ArrayList<AbstractFile> fileList=new ArrayList<AbstractFile>();  
+  private String name;  
+        
+  public Folder(String name) {  
+      this.name = name;  
+  }  
+    
+  public void add(AbstractFile file) {  
+     fileList.add(file);    
+  }  
+    
+  public void remove(AbstractFile file) {  
+      fileList.remove(file);  
+  }  
+    
+  public AbstractFile getChild(int i) {  
+      return (AbstractFile)fileList.get(i);  
+  }  
+    
+  public void killVirus() {  
+      System.out.println("****对文件夹'" + name + "'进行杀毒");  //模拟杀毒  
+        
+      //递归调用成员构件的killVirus()方法  
+      for(Object obj : fileList) {  
+          ((AbstractFile)obj).killVirus();  
+      }  
+  }  
+}  

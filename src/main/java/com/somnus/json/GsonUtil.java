@@ -17,22 +17,19 @@ public class GsonUtil {
      * @return Java对象
      */
     @SuppressWarnings("unchecked")
-	public static  <T> T fromJson(String json, Class<T> clazz) 
-    {
+	public static  <T> T fromJson(String json, Class<T> clazz){
         T value = null;
         try {
-        	if (Map.class.isAssignableFrom(clazz) || List.class.isAssignableFrom(clazz)) 
-        	{
+        	if (Map.class.isAssignableFrom(clazz) 
+        	        || List.class.isAssignableFrom(clazz)) {
         		Object obj = gson.fromJson(json, Object.class);
         		value = clazz.isInstance(obj) ? (T) obj : null;
         	} 
-        	else 
-        	{
+        	else {
                 value = gson.fromJson(json, clazz);
         	}
         } 
-        catch (Exception e) 
-        {
+        catch (Exception e) {
         	e.printStackTrace();
         }
         return value;
@@ -44,8 +41,7 @@ public class GsonUtil {
      * @param o Java对象
      * @return Json字符串
      */
-    public static String toJson(Object o) 
-    {
+    public static String toJson(Object o){
         return gson.toJson(o);
     }
     public static void main(String[] args) {
@@ -78,8 +74,7 @@ public class GsonUtil {
 		System.out.println(key3.get("username"));
 		System.out.println(key3.get("password"));
 		List<Integer> key4 = ((List<Integer>)unmap.get("key4"));
-		for(Integer data:key4)
-		{
+		for(Integer data:key4){
 			System.out.println(data);
 		}
 		

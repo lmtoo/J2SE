@@ -2,12 +2,11 @@ package com.somnus.designPatterns.factoryMethod;
 
 public class Client {
 
-    public static void main(String[] args) {
-        FactoryBMW320 factoryBMW320 = new FactoryBMW320();  
-        BMW320 bmw320 = factoryBMW320.createBMW();  
-  
-        FactoryBMW523 factoryBMW523 = new FactoryBMW523();  
-        BMW523 bmw523 = factoryBMW523.createBMW();   
+    public static void main(String[] args) throws Exception {
+        //getBean()的返回类型为Object，需要进行强制类型转换  
+        LoggerFactory factory = (LoggerFactory)XMLUtil.getBean(); 
+        Logger logger = factory.createLogger();  
+        logger.writeLog();  
     }
 
 }

@@ -1,59 +1,24 @@
 package com.somnus.designPatterns.prototype;
 
-import java.io.Serializable;
-import java.util.Date;
-
-/**
- * 浅克隆
- * @author Somnus
- */
 public class Client {
 	public static void main(String[] args) throws CloneNotSupportedException {
-		Date date = new Date(1428588884432L);
-		Sheep sheep = new Sheep("Dolly",date);
-		Sheep Sheep2 = (Sheep) sheep.clone();
-		
-		System.out.println(sheep);
-		System.out.println(sheep.getName());
-		System.out.println(sheep.getBirthday());
-		
-		date.setTime(1420588854432L);
-		
-		System.out.println(Sheep2);
-		System.out.println(Sheep2.getName());
-		System.out.println(Sheep2.getBirthday());
+	    WeeklyLog log_previous = new WeeklyLog();  //创建原型对象
+        log_previous.setName("张无忌");
+        log_previous.setDate("第12周");
+        log_previous.setContent("这周工作很忙，每天加班！");
+       
+        System.out.println("****周报****");
+        System.out.println("周次：" +  log_previous.getDate());
+        System.out.println("姓名：" +  log_previous.getName());
+        System.out.println("内容：" +  log_previous.getContent());
+        System.out.println("--------------------------------");
+       
+        WeeklyLog  log_new;
+        log_new  = log_previous.clone(); //调用克隆方法创建克隆对象
+        log_new.setDate("第13周");
+        System.out.println("****周报****");
+        System.out.println("周次：" + log_new.getDate());
+        System.out.println("姓名：" + log_new.getName());
+        System.out.println("内容：" + log_new.getContent());
 	}
-}
-class Sheep implements Cloneable,Serializable{
-	private String name;
-	private Date birthday;
-	
-	public Sheep(String name, Date birthday) {
-		this.name =  name;
-		this.birthday = birthday;
-	}
-
-	@Override
-	protected Object clone() throws CloneNotSupportedException{
-		Object obj = super.clone();
-		
-		return obj;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Date getBirthday() {
-		return birthday;
-	}
-
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
-	}
-	
 }

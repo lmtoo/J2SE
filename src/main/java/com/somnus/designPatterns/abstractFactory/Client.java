@@ -2,16 +2,15 @@ package com.somnus.designPatterns.abstractFactory;
 
 public class Client {
 
-    public static void main(String[] args) {
-        // 生产宝马320系列配件
-        FactoryBMW320 factoryBMW320 = new FactoryBMW320();
-        factoryBMW320.createEngine();
-        factoryBMW320.createAircondition();
-
-        // 生产宝马523系列配件
-        FactoryBMW523 factoryBMW523 = new FactoryBMW523();
-        factoryBMW523.createEngine();
-        factoryBMW523.createAircondition();
+    public static void main(String[] args) throws Exception {
+        //使用抽象层定义  
+        SkinFactory factory = (SkinFactory)XMLUtil.getBean();  
+        Button bt = factory.createButton();  
+        TextField tf = factory.createTextField();  
+        ComboBox cb = factory.createComboBox();  
+        bt.display();  
+        tf.display();  
+        cb.display(); 
     }
 
 }

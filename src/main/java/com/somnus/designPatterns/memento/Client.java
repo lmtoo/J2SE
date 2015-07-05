@@ -3,20 +3,21 @@ package com.somnus.designPatterns.memento;
 public class Client {
 
 	public static void main(String[] args) {
-		CareTaker taker = new CareTaker();
-		Emp emp = new Emp("Somnus",25,10000.0);
-		System.out.println("第一次打印的对象："+emp.getEname()+"|"+emp.getAge());
-		taker.setEmpMemento(emp.memento());
-		
-		emp.setEname("Smile");
-		emp.setAge(30);
-		emp.setSalary(20000.0);
-		System.out.println("第二次打印的对象："+emp.getEname()+"|"+emp.getAge());
-		
-		emp.recovery(taker.getEmpMemento());
-		
-		System.out.println("第三次打印的对象："+emp.getEname()+"|"+emp.getAge());
-		
+	    MementoCaretaker mc = new MementoCaretaker();  
+        Chessman chess = new Chessman("车",1,1);  
+        display(chess);  
+        mc.setMemento(chess.save()); //保存状态       
+        chess.setY(4);  
+        display(chess);  
+        mc.setMemento(chess.save()); //保存状态  
+        display(chess);  
+        chess.setX(5);  
+        display(chess);  
+        System.out.println("******悔棋******");     
+        chess.restore(mc.getMemento()); //恢复状态  
+        display(chess); 
 	}
-
+	public static void display(Chessman chess) {  
+        System.out.println("棋子" + chess.getLabel() + "当前位置为：" + "第" + chess.getX() + "行" + "第" + chess.getY() + "列。");  
+    } 
 }

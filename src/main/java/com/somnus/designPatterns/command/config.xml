@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>  
+    <firstCommand>com.somnus.designPatterns.command.HelpCommand</firstCommand>
+    <secondCommand>com.somnus.designPatterns.command.MinimizeCommand</secondCommand> 
+</config>

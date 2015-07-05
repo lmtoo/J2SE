@@ -7,7 +7,7 @@ import java.lang.reflect.Method;
  * @Title: PrivateMethod.java 
  * @Package com.somnus.reflect.reflect 
  * @Description: TODO
- * @author yh.liu
+ * @author Somnus
  * @date 2015年6月10日 上午9:31:36 
  * @version V1.0
  */

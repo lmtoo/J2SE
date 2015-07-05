@@ -3,22 +3,31 @@ package com.somnus.designPatterns.composite;
 public class Client {
     
 	public static void main(String[] args) {
-		AbstractFile f2,f3,f4,f5;
-		Folder f1 = new Folder("我的收藏");
-		f2 = new ImageFile("mm.jpg");
-		f3 = new TextFile("123.txt");
-		f1.add(f2);
-		f1.add(f3);
-		
-		Folder f11 = new Folder("我的电影");
-		f4 = new VideoFile("笑傲江湖.avi");
-		f5 = new VideoFile("神雕侠侣.mp4");
-		f11.add(f4);
-		f11.add(f5);
-		
-		f1.add(f11);
-		
-		f1.killVirus();
+	  //针对抽象构件编程  
+        AbstractFile file1,file2,file3,file4,file5,folder1,folder2,folder3,folder4;  
+          
+        folder1 = new Folder("Sunny的资料");  
+        folder2 = new Folder("图像文件");  
+        folder3 = new Folder("文本文件");  
+        folder4 = new Folder("视频文件");  
+          
+        file1 = new ImageFile("小龙女.jpg");  
+        file2 = new ImageFile("张无忌.gif");  
+        file3 = new TextFile("九阴真经.txt");  
+        file4 = new TextFile("葵花宝典.doc");  
+        file5 = new VideoFile("笑傲江湖.rmvb");  
+  
+        folder2.add(file1);  
+        folder2.add(file2);  
+        folder3.add(file3);  
+        folder3.add(file4);  
+        folder4.add(file5);  
+        folder1.add(folder2);  
+        folder1.add(folder3);  
+        folder1.add(folder4);  
+          
+        //从“Sunny的资料”节点开始进行杀毒操作  
+        folder1.killVirus();  
 	}
 	
 }

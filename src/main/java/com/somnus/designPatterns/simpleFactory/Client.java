@@ -1,16 +1,13 @@
 package com.somnus.designPatterns.simpleFactory;
 
-/** 
- * @description: TODO 
- * @author yh.liu
- * date 2015年4月22日 下午1:58:25  
- */
 public class Client {
 
     public static void main(String[] args) {
-        Factory factory = new Factory();
-        BMW bmw320 = factory.createBMW(320);
-        BMW bmw523 = factory.createBMW(523);
+        //读取配置文件中的参数  
+        String type = XMLUtil.getChartType(); 
+        //通过静态工厂方法创建产品  
+        Chart chart = ChartFactory.getChart(type); 
+        chart.display(); 
     }
 
 }
